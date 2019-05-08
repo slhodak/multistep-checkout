@@ -20,9 +20,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-// Controllers
+//  Controllers
 //  Submit data to server
-//  AJAX? Fetch?
+//  Data Submission
+//  (Controllers)
 var devServer = 'http://127.0.0.1:9000';
 var Controllers = {
   submitFormData: function submitFormData(data) {
@@ -38,8 +39,9 @@ var Controllers = {
     })["catch"](function (err) {
       console.log(err);
     });
-  } //  Forms (Views...)
-  // F1 collects name, email, and password for account creation.
+  } //  Forms 
+  //  (Views/Controllers)
+  //  F1 collects name, email, and password for account creation.
 
 };
 
@@ -356,7 +358,6 @@ function (_React$Component6) {
     key: "handleSubmitData",
     value: function handleSubmitData() {
       event.preventDefault();
-      console.log(JSON.stringify(this.state));
       Controllers.submitFormData(this.state);
       this.setState({});
     }

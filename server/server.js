@@ -13,10 +13,17 @@ app.use(express.static(path.join(__dirname, path.normalize('../public'))));
 
 //  handle post requests
 app.post('/submitData', (req, res, next) => {
-  console.log(req.body);
-  // for (var item in JSON.parse(req.body)) {
-  //   console.log(item + ': ' + this.state[item]);
-  // }
+  //  request body comes in parsed
+  for (var item in req.body) {
+    console.log(item + ': ' + req.body[item]);
+  }
   res.status(200);
   res.send('hear you');
 });
+
+// const Models = {
+//   parseAndSeparateData: (data) => {
+    
+//     return JSON.parse(data);
+//   }
+// }

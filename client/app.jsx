@@ -1,6 +1,7 @@
-// Controllers
+//  Controllers
 //  Submit data to server
-//  AJAX? Fetch?
+//  Data Submission
+//  (Controllers)
 const devServer = 'http://127.0.0.1:9000'
 
 const Controllers = {
@@ -21,8 +22,10 @@ const Controllers = {
       });
   }
 }
-//  Forms (Views...)
-// F1 collects name, email, and password for account creation.
+
+//  Forms 
+//  (Views/Controllers)
+//  F1 collects name, email, and password for account creation.
 class FormOne extends React.Component {
   constructor(props) {
     super(props);
@@ -175,7 +178,6 @@ class App extends React.Component {
   }
   handleSubmitData() {
     event.preventDefault();
-    console.log(JSON.stringify(this.state));
     Controllers.submitFormData(this.state);
     this.setState({});
   }
