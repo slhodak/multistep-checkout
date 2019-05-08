@@ -2,6 +2,8 @@
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -18,9 +20,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-//  Dynamically create forms based on form models of attributes
-//  Or create several components
 //  Forms
+// F1 collects name, email, and password for account creation.
 var FormOne =
 /*#__PURE__*/
 function (_React$Component) {
@@ -32,8 +33,14 @@ function (_React$Component) {
     _classCallCheck(this, FormOne);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(FormOne).call(this, props));
+    _this.state = {
+      name: '',
+      email: '',
+      password: ''
+    };
     _this.handleBackButtonClick = _this.handleBackButtonClick.bind(_assertThisInitialized(_this));
     _this.handleFormSubmit = _this.handleFormSubmit.bind(_assertThisInitialized(_this));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -47,8 +54,18 @@ function (_React$Component) {
     key: "handleFormSubmit",
     value: function handleFormSubmit(e) {
       event.preventDefault();
+
+      for (var item in this.state) {
+        console.log(item + ': ' + this.state[item]);
+      }
+
       ReactDOM.findDOMNode(this).hidden = true;
       document.getElementById('formTwo').hidden = false;
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(e) {
+      this.setState(_defineProperty({}, e.target.name, e.target.value));
     }
   }, {
     key: "render",
@@ -56,25 +73,29 @@ function (_React$Component) {
       return React.createElement("div", {
         id: "formOne",
         hidden: true
-      }, React.createElement("form", null, React.createElement("label", {
+      }, React.createElement("form", {
+        onSubmit: this.handleFormSubmit
+      }, React.createElement("label", {
         htmlFor: "name"
       }, "Name:"), React.createElement("input", {
         type: "text",
-        name: "name"
+        name: "name",
+        onChange: this.handleChange
       }), React.createElement("label", {
         htmlFor: "email"
       }, "Email:"), React.createElement("input", {
         type: "text",
-        name: "email"
+        name: "email",
+        onChange: this.handleChange
       }), React.createElement("label", {
         htmlFor: "password"
       }, "Password:"), React.createElement("input", {
         type: "text",
-        name: "password"
+        name: "password",
+        onChange: this.handleChange
       }), React.createElement("input", {
         type: "submit",
-        value: "Next",
-        onClick: this.handleFormSubmit
+        value: "Next"
       })), React.createElement("button", {
         onClick: this.handleBackButtonClick
       }, "Back"));
@@ -82,7 +103,8 @@ function (_React$Component) {
   }]);
 
   return FormOne;
-}(React.Component);
+}(React.Component); // F2 collects ship to address (line 1, line 2, city, state, zip code) and phone number.
+
 
 var FormTwo =
 /*#__PURE__*/
@@ -145,7 +167,8 @@ function (_React$Component2) {
   }]);
 
   return FormTwo;
-}(React.Component);
+}(React.Component); // F3 collects credit card #, expiry date, CVV, and billing zip code
+
 
 var FormThree =
 /*#__PURE__*/
@@ -246,9 +269,7 @@ function (_React$Component4) {
   return PurchaseScreen;
 }(React.Component);
 
-; // F1 collects name, email, and password for account creation.
-// F2 collects ship to address (line 1, line 2, city, state, zip code) and phone number.
-// F3 collects credit card #, expiry date, CVV, and billing zip code
+;
 
 var CheckoutButton =
 /*#__PURE__*/
@@ -268,8 +289,7 @@ function (_React$Component5) {
   _createClass(CheckoutButton, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      console.log('should show the next form'); //  hide this element and show the next form
-
+      console.log('should show the next form');
       ReactDOM.findDOMNode(this).hidden = true;
       document.getElementById('formOne').hidden = false;
     }

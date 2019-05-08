@@ -1,4 +1,12 @@
 dependencies vs dev dependencies
 
 
-Will Babel transpile to a single file from a folder?
+Will Babel transpile to a single file from a folder? NOPE
+
+
+Refactors:
+- App handles hiding and showing all form pages
+  - Single 'move around' function that takes parameters
+
+Priorities:
+- Submit form data to something (log it for now)

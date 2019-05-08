@@ -1,14 +1,17 @@
-//  Dynamically create forms based on form models of attributes
-//  Or create several components
-
-
 
 //  Forms
+// F1 collects name, email, and password for account creation.
 class FormOne extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: '',
+      email: '',
+      password: ''
+    };
     this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   handleBackButtonClick(e) {
     ReactDOM.findDOMNode(this).hidden = true;
@@ -16,20 +19,28 @@ class FormOne extends React.Component {
   }
   handleFormSubmit(e) {
     event.preventDefault();
+    for (var item in this.state) {
+      console.log(item + ': ' + this.state[item]);
+    }
     ReactDOM.findDOMNode(this).hidden = true;
     document.getElementById('formTwo').hidden = false;
+  }
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
   render() {
     return(
     <div id="formOne" hidden={true}>
-      <form>
+      <form onSubmit={this.handleFormSubmit}>
         <label htmlFor="name">Name:</label>
-        <input type="text" name="name" />
+        <input type="text" name="name" onChange={this.handleChange}/>
         <label htmlFor="email">Email:</label>
-        <input type="text" name="email" />
+        <input type="text" name="email" onChange={this.handleChange}/>
         <label htmlFor="password">Password:</label>
-        <input type="text" name="password" />
-        <input type="submit" value="Next" onClick={this.handleFormSubmit} />
+        <input type="text" name="password" onChange={this.handleChange}/>
+        <input type="submit" value="Next" />
       </form>
       <button onClick={this.handleBackButtonClick}>Back</button>
     </div>
@@ -37,6 +48,7 @@ class FormOne extends React.Component {
   }
 }
 
+// F2 collects ship to address (line 1, line 2, city, state, zip code) and phone number.
 class FormTwo extends React.Component {
   constructor(props) {
     super(props);
@@ -70,6 +82,7 @@ class FormTwo extends React.Component {
   }
 }
 
+// F3 collects credit card #, expiry date, CVV, and billing zip code
 class FormThree extends React.Component {
   constructor(props) {
     super(props);
@@ -122,9 +135,6 @@ class PurchaseScreen extends React.Component {
   }
 };
 
-// F1 collects name, email, and password for account creation.
-// F2 collects ship to address (line 1, line 2, city, state, zip code) and phone number.
-// F3 collects credit card #, expiry date, CVV, and billing zip code
 
 class CheckoutButton extends React.Component {
   constructor(props) {
@@ -134,7 +144,6 @@ class CheckoutButton extends React.Component {
   }
   handleSubmit(e) {
     console.log('should show the next form');
-    //  hide this element and show the next form
     ReactDOM.findDOMNode(this).hidden = true;
     document.getElementById('formOne').hidden = false;
   }
