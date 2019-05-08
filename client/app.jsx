@@ -139,13 +139,10 @@ class PurchaseScreen extends React.Component {
 class CheckoutButton extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit(e) {
-    console.log('should show the next form');
-    ReactDOM.findDOMNode(this).hidden = true;
-    document.getElementById('formOne').hidden = false;
+    this.props.travelBetweenPages('checkoutButton', 'formOne');
   }
   render() {
     return(
@@ -158,10 +155,32 @@ class CheckoutButton extends React.Component {
 }
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleFormSubmit(e) {
+    event.preventDefault();
+    for (var item in this.state) {
+      console.log(item + ': ' + this.state[item]);
+    }
+  }
+  travelBetweenPages(self, target) {
+    document.getElementById(self).hidden = true;
+    document.getElementById(target).hidden = false;
+  }
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
   render() {
     return(
       <div>
-        <CheckoutButton />
+        <CheckoutButton travelBetweenPages={this.travelBetweenPages}/>
         <FormOne />
         <FormTwo />
         <FormThree />

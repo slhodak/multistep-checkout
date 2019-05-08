@@ -289,9 +289,7 @@ function (_React$Component5) {
   _createClass(CheckoutButton, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      console.log('should show the next form');
-      ReactDOM.findDOMNode(this).hidden = true;
-      document.getElementById('formOne').hidden = false;
+      this.props.travelBetweenPages('checkoutButton', 'formOne');
     }
   }, {
     key: "render",
@@ -312,16 +310,44 @@ var App =
 function (_React$Component6) {
   _inherits(App, _React$Component6);
 
-  function App() {
+  function App(props) {
+    var _this6;
+
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(App).apply(this, arguments));
+    _this6 = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
+    _this6.state = {};
+    _this6.handleFormSubmit = _this6.handleFormSubmit.bind(_assertThisInitialized(_this6));
+    _this6.handleChange = _this6.handleChange.bind(_assertThisInitialized(_this6));
+    return _this6;
   }
 
   _createClass(App, [{
+    key: "handleFormSubmit",
+    value: function handleFormSubmit(e) {
+      event.preventDefault();
+
+      for (var item in this.state) {
+        console.log(item + ': ' + this.state[item]);
+      }
+    }
+  }, {
+    key: "travelBetweenPages",
+    value: function travelBetweenPages(self, target) {
+      document.getElementById(self).hidden = true;
+      document.getElementById(target).hidden = false;
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(e) {
+      this.setState(_defineProperty({}, e.target.name, e.target.value));
+    }
+  }, {
     key: "render",
     value: function render() {
-      return React.createElement("div", null, React.createElement(CheckoutButton, null), React.createElement(FormOne, null), React.createElement(FormTwo, null), React.createElement(FormThree, null), React.createElement(PurchaseScreen, null));
+      return React.createElement("div", null, React.createElement(CheckoutButton, {
+        travelBetweenPages: this.travelBetweenPages
+      }), React.createElement(FormOne, null), React.createElement(FormTwo, null), React.createElement(FormThree, null), React.createElement(PurchaseScreen, null));
     }
   }]);
 
