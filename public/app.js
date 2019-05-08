@@ -35,7 +35,6 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(FormOne).call(this, props));
     _this.handleBackButtonClick = _this.handleBackButtonClick.bind(_assertThisInitialized(_this));
     _this.handleFormSubmit = _this.handleFormSubmit.bind(_assertThisInitialized(_this));
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -51,11 +50,6 @@ function (_React$Component) {
       this.props.travelBetweenPages('formOne', 'formTwo');
     }
   }, {
-    key: "handleChange",
-    value: function handleChange(e) {
-      this.props.updateFormData(e);
-    }
-  }, {
     key: "render",
     value: function render() {
       return React.createElement("div", {
@@ -68,19 +62,19 @@ function (_React$Component) {
       }, "Name:"), React.createElement("input", {
         type: "text",
         name: "name",
-        onChange: this.handleChange
+        onChange: this.props.updateFormData
       }), React.createElement("label", {
         htmlFor: "email"
       }, "Email:"), React.createElement("input", {
         type: "text",
         name: "email",
-        onChange: this.handleChange
+        onChange: this.props.updateFormData
       }), React.createElement("label", {
         htmlFor: "password"
       }, "Password:"), React.createElement("input", {
         type: "text",
         name: "password",
-        onChange: this.handleChange
+        onChange: this.props.updateFormData
       }), React.createElement("input", {
         type: "submit",
         value: "Next"
@@ -119,6 +113,7 @@ function (_React$Component2) {
     key: "handleFormSubmit",
     value: function handleFormSubmit(e) {
       event.preventDefault();
+      this.props.handleSubmitData();
       this.props.travelBetweenPages('formTwo', 'formThree');
     }
   }, {
@@ -129,19 +124,40 @@ function (_React$Component2) {
         hidden: true
       }, React.createElement("form", null, React.createElement("label", {
         htmlFor: "name"
-      }, "Name:"), React.createElement("input", {
+      }, "Address Line 1:"), React.createElement("input", {
         type: "text",
-        name: "name"
+        name: "addressOne",
+        onChange: this.props.updateFormData
+      }), React.createElement("label", {
+        htmlFor: "name"
+      }, "Address Line 2:"), React.createElement("input", {
+        type: "text",
+        name: "addressTwo",
+        onChange: this.props.updateFormData
       }), React.createElement("label", {
         htmlFor: "email"
-      }, "Email:"), React.createElement("input", {
+      }, "City:"), React.createElement("input", {
         type: "text",
-        name: "email"
+        name: "city",
+        onChange: this.props.updateFormData
       }), React.createElement("label", {
         htmlFor: "password"
-      }, "Password:"), React.createElement("input", {
+      }, "State:"), React.createElement("input", {
         type: "text",
-        name: "password"
+        name: "state",
+        onChange: this.props.updateFormData
+      }), React.createElement("label", {
+        htmlFor: "password"
+      }, "Zip Code:"), React.createElement("input", {
+        type: "text",
+        name: "zipCode",
+        onChange: this.props.updateFormData
+      }), React.createElement("label", {
+        htmlFor: "password"
+      }, "Phone Number:"), React.createElement("input", {
+        type: "text",
+        name: "phoneNumber",
+        onChange: this.props.updateFormData
       }), React.createElement("input", {
         type: "submit",
         value: "Next",
@@ -181,6 +197,7 @@ function (_React$Component3) {
     key: "handleFormSubmit",
     value: function handleFormSubmit(e) {
       event.preventDefault();
+      this.props.handleSubmitData();
       this.props.travelBetweenPages('formThree', 'purchaseScreen');
     }
   }, {
@@ -301,7 +318,7 @@ function (_React$Component6) {
     _this6 = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
     _this6.state = {};
     _this6.handleSubmitData = _this6.handleSubmitData.bind(_assertThisInitialized(_this6));
-    _this6.handleChange = _this6.handleChange.bind(_assertThisInitialized(_this6));
+    _this6.updateFormData = _this6.updateFormData.bind(_assertThisInitialized(_this6));
     return _this6;
   }
 
@@ -337,9 +354,13 @@ function (_React$Component6) {
         updateFormData: this.updateFormData,
         handleSubmitData: this.handleSubmitData
       }), React.createElement(FormTwo, {
-        travelBetweenPages: this.travelBetweenPages
+        travelBetweenPages: this.travelBetweenPages,
+        updateFormData: this.updateFormData,
+        handleSubmitData: this.handleSubmitData
       }), React.createElement(FormThree, {
-        travelBetweenPages: this.travelBetweenPages
+        travelBetweenPages: this.travelBetweenPages,
+        updateFormData: this.updateFormData,
+        handleSubmitData: this.handleSubmitData
       }), React.createElement(PurchaseScreen, {
         travelBetweenPages: this.travelBetweenPages
       }));

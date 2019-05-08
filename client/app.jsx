@@ -4,10 +4,8 @@
 class FormOne extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
   handleBackButtonClick(e) {
     this.props.travelBetweenPages('formOne', 'checkoutButton');
@@ -16,19 +14,16 @@ class FormOne extends React.Component {
     this.props.handleSubmitData();
     this.props.travelBetweenPages('formOne', 'formTwo');
   }
-  handleChange(e) {
-    this.props.updateFormData(e);
-  }
   render() {
     return(
     <div id="formOne" hidden={true}>
       <form onSubmit={this.handleFormSubmit}>
         <label htmlFor="name">Name:</label>
-        <input type="text" name="name" onChange={this.handleChange}/>
+        <input type="text" name="name" onChange={this.props.updateFormData}/>
         <label htmlFor="email">Email:</label>
-        <input type="text" name="email" onChange={this.handleChange}/>
+        <input type="text" name="email" onChange={this.props.updateFormData}/>
         <label htmlFor="password">Password:</label>
-        <input type="text" name="password" onChange={this.handleChange}/>
+        <input type="text" name="password" onChange={this.props.updateFormData}/>
         <input type="submit" value="Next" />
       </form>
       <button onClick={this.handleBackButtonClick}>Back</button>
@@ -49,18 +44,25 @@ class FormTwo extends React.Component {
   }
   handleFormSubmit(e) {
     event.preventDefault();
+    this.props.handleSubmitData();
     this.props.travelBetweenPages('formTwo', 'formThree');
   }
   render() {
     return(
     <div id="formTwo" hidden={true}>
       <form>
-        <label htmlFor="name">Name:</label>
-        <input type="text" name="name" />
-        <label htmlFor="email">Email:</label>
-        <input type="text" name="email" />
-        <label htmlFor="password">Password:</label>
-        <input type="text" name="password" />
+        <label htmlFor="name">Address Line 1:</label>
+        <input type="text" name="addressOne" onChange={this.props.updateFormData}/>
+        <label htmlFor="name">Address Line 2:</label>
+        <input type="text" name="addressTwo" onChange={this.props.updateFormData}/>
+        <label htmlFor="email">City:</label>
+        <input type="text" name="city" onChange={this.props.updateFormData}/>
+        <label htmlFor="password">State:</label>
+        <input type="text" name="state" onChange={this.props.updateFormData}/>
+        <label htmlFor="password">Zip Code:</label>
+        <input type="text" name="zipCode" onChange={this.props.updateFormData}/>
+        <label htmlFor="password">Phone Number:</label>
+        <input type="text" name="phoneNumber" onChange={this.props.updateFormData}/>
         <input type="submit" value="Next" onClick={this.handleFormSubmit} />
       </form>
       <button onClick={this.handleBackButtonClick}>Back</button>
@@ -81,6 +83,7 @@ class FormThree extends React.Component {
   }
   handleFormSubmit(e) {
     event.preventDefault();
+    this.props.handleSubmitData();
     this.props.travelBetweenPages('formThree', 'purchaseScreen');
   }
   render() {
@@ -144,7 +147,7 @@ class App extends React.Component {
     this.state = {};
 
     this.handleSubmitData = this.handleSubmitData.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.updateFormData = this.updateFormData.bind(this);
   }
   handleSubmitData() {
     event.preventDefault();
@@ -167,8 +170,8 @@ class App extends React.Component {
       <div>
         <CheckoutButton travelBetweenPages={this.travelBetweenPages}/>
         <FormOne travelBetweenPages={this.travelBetweenPages} updateFormData={this.updateFormData} handleSubmitData={this.handleSubmitData}/>
-        <FormTwo travelBetweenPages={this.travelBetweenPages}/>
-        <FormThree travelBetweenPages={this.travelBetweenPages}/>
+        <FormTwo travelBetweenPages={this.travelBetweenPages} updateFormData={this.updateFormData} handleSubmitData={this.handleSubmitData}/>
+        <FormThree travelBetweenPages={this.travelBetweenPages} updateFormData={this.updateFormData} handleSubmitData={this.handleSubmitData}/>
         <PurchaseScreen travelBetweenPages={this.travelBetweenPages}/>
       </div>
     )
