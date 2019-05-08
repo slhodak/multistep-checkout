@@ -48,13 +48,19 @@ function (_React$Component) {
       return React.createElement("div", {
         id: "formOne",
         hidden: true
-      }, React.createElement("form", null, React.createElement("input", {
+      }, React.createElement("form", null, React.createElement("label", {
+        "for": "name"
+      }, "Name:"), React.createElement("input", {
         type: "text",
         name: "name"
-      }), React.createElement("input", {
+      }), React.createElement("label", {
+        "for": "email"
+      }, "Email:"), React.createElement("input", {
         type: "text",
         name: "email"
-      }), React.createElement("input", {
+      }), React.createElement("label", {
+        "for": "password"
+      }, "Password:"), React.createElement("input", {
         type: "text",
         name: "password"
       }), React.createElement("input", {

@@ -13,3 +13,7 @@
 #formThree {
   background-color: rgb(210, 182, 255);
 }
+
+input {
+  display: block;
+}

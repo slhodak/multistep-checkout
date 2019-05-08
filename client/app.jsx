@@ -15,8 +15,11 @@ class FormOne extends React.Component {
     return(
     <div id="formOne" hidden={true}>
       <form>
+        <label for="name">Name:</label>
         <input type="text" name="name" />
+        <label for="email">Email:</label>
         <input type="text" name="email" />
+        <label for="password">Password:</label>
         <input type="text" name="password" />
         <input type="submit" value="Next"/>
       </form>
