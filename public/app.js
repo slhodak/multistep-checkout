@@ -24,19 +24,24 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 //  Submit data to server
 //  AJAX? Fetch?
 var devServer = 'http://127.0.0.1:9000';
+var Controllers = {
+  submitFormData: function submitFormData(data) {
+    fetch(devServer + '/submitData', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(function (response) {
+      console.log(response);
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  } //  Forms (Views...)
+  // F1 collects name, email, and password for account creation.
 
-var submitFormData = function submitFormData(data) {
-  fetch(devServer + '/submitData', {
-    method: 'POST',
-    data: 'someData'
-  }).then(function (response) {
-    console.log(response);
-  })["catch"](function (err) {
-    console.log(err);
-  });
-}; //  Forms (Views...)
-// F1 collects name, email, and password for account creation.
-
+};
 
 var FormOne =
 /*#__PURE__*/
@@ -351,11 +356,8 @@ function (_React$Component6) {
     key: "handleSubmitData",
     value: function handleSubmitData() {
       event.preventDefault();
-
-      for (var item in this.state) {
-        console.log(item + ': ' + this.state[item]);
-      }
-
+      console.log(JSON.stringify(this.state));
+      Controllers.submitFormData(this.state);
       this.setState({});
     }
   }, {

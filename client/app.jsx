@@ -3,17 +3,23 @@
 //  AJAX? Fetch?
 const devServer = 'http://127.0.0.1:9000'
 
-const submitFormData = (data) => {
-  fetch(devServer + '/submitData', {
-    method: 'POST',
-    data: 'someData'
-  })
-    .then(response => {
-      console.log(response);
+const Controllers = {
+  submitFormData: (data) => {
+    fetch(devServer + '/submitData', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
     })
-    .catch(err => {
-      console.log(err);
-    });
+      .then(response => {
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 }
 //  Forms (Views...)
 // F1 collects name, email, and password for account creation.
@@ -169,9 +175,8 @@ class App extends React.Component {
   }
   handleSubmitData() {
     event.preventDefault();
-    for (var item in this.state) {
-      console.log(item + ': ' + this.state[item]);
-    }
+    console.log(JSON.stringify(this.state));
+    Controllers.submitFormData(this.state);
     this.setState({});
   }
   updateFormData(e) {
