@@ -90,12 +90,14 @@ class FormThree extends React.Component {
     return(
     <div id="formThree" hidden={true}>
       <form>
-        <label htmlFor="name">Name:</label>
-        <input type="text" name="name" />
-        <label htmlFor="email">Email:</label>
-        <input type="text" name="email" />
-        <label htmlFor="password">Password:</label>
-        <input type="text" name="password" />
+        <label htmlFor="name">Credit Card #</label>
+        <input type="text" name="ccNumber" onChange={this.props.updateFormData}/>
+        <label htmlFor="email">Expiration Date</label>
+        <input type="text" name="expirationDate" onChange={this.props.updateFormData}/>
+        <label htmlFor="password">CVV</label>
+        <input type="text" name="cvvCode" onChange={this.props.updateFormData}/>
+        <label htmlFor="password">Billing Zip Code</label>
+        <input type="text" name="billingZipCode" onChange={this.props.updateFormData}/>
         <input type="submit" value="Purchase" onClick={this.handleFormSubmit} />
       </form>
       <button onClick={this.handleBackButtonClick}>Back</button>

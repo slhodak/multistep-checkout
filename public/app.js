@@ -208,19 +208,28 @@ function (_React$Component3) {
         hidden: true
       }, React.createElement("form", null, React.createElement("label", {
         htmlFor: "name"
-      }, "Name:"), React.createElement("input", {
+      }, "Credit Card #"), React.createElement("input", {
         type: "text",
-        name: "name"
+        name: "ccNumber",
+        onChange: this.props.updateFormData
       }), React.createElement("label", {
         htmlFor: "email"
-      }, "Email:"), React.createElement("input", {
+      }, "Expiration Date"), React.createElement("input", {
         type: "text",
-        name: "email"
+        name: "expirationDate",
+        onChange: this.props.updateFormData
       }), React.createElement("label", {
         htmlFor: "password"
-      }, "Password:"), React.createElement("input", {
+      }, "CVV"), React.createElement("input", {
         type: "text",
-        name: "password"
+        name: "cvvCode",
+        onChange: this.props.updateFormData
+      }), React.createElement("label", {
+        htmlFor: "password"
+      }, "Billing Zip Code"), React.createElement("input", {
+        type: "text",
+        name: "billingZipCode",
+        onChange: this.props.updateFormData
       }), React.createElement("input", {
         type: "submit",
         value: "Purchase",
