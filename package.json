@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/slhodak/multistep-checkout/issues"
   },
-  "homepage": "https://github.com/slhodak/multistep-checkout#readme"
+  "homepage": "https://github.com/slhodak/multistep-checkout#readme",
+  "dependencies": {
+    "react": "^16.8.6"
+  }
 }
