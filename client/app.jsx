@@ -1,8 +1,10 @@
 // Controllers
 //  Submit data to server
 //  AJAX? Fetch?
+const devServer = 'http://127.0.0.1:9000'
+
 const submitFormData = (data) => {
-  fetch('http://127.0.0.1:9000', {
+  fetch(devServer + '/submitData', {
     method: 'POST',
     data: 'someData'
   })

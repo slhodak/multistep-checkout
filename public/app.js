@@ -23,8 +23,10 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 // Controllers
 //  Submit data to server
 //  AJAX? Fetch?
+var devServer = 'http://127.0.0.1:9000';
+
 var submitFormData = function submitFormData(data) {
-  fetch('http://127.0.0.1:9000', {
+  fetch(devServer + '/submitData', {
     method: 'POST',
     data: 'someData'
   }).then(function (response) {
