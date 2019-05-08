@@ -4,11 +4,7 @@
 class FormOne extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: '',
-      email: '',
-      password: ''
-    };
+
     this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -17,16 +13,11 @@ class FormOne extends React.Component {
     this.props.travelBetweenPages('formOne', 'checkoutButton');
   }
   handleFormSubmit(e) {
-    event.preventDefault();
-    for (var item in this.state) {
-      console.log(item + ': ' + this.state[item]);
-    }
+    this.props.handleSubmitData();
     this.props.travelBetweenPages('formOne', 'formTwo');
   }
   handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    this.props.updateFormData(e);
   }
   render() {
     return(
@@ -152,29 +143,30 @@ class App extends React.Component {
     super(props);
     this.state = {};
 
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleSubmitData = this.handleSubmitData.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  handleFormSubmit(e) {
+  handleSubmitData() {
     event.preventDefault();
     for (var item in this.state) {
       console.log(item + ': ' + this.state[item]);
     }
+    this.setState({});
+  }
+  updateFormData(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
   travelBetweenPages(self, target) {
     document.getElementById(self).hidden = true;
     document.getElementById(target).hidden = false;
   }
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
   render() {
     return(
       <div>
         <CheckoutButton travelBetweenPages={this.travelBetweenPages}/>
-        <FormOne travelBetweenPages={this.travelBetweenPages}/>
+        <FormOne travelBetweenPages={this.travelBetweenPages} updateFormData={this.updateFormData} handleSubmitData={this.handleSubmitData}/>
         <FormTwo travelBetweenPages={this.travelBetweenPages}/>
         <FormThree travelBetweenPages={this.travelBetweenPages}/>
         <PurchaseScreen travelBetweenPages={this.travelBetweenPages}/>

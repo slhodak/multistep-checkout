@@ -1,8 +1,8 @@
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -33,11 +33,6 @@ function (_React$Component) {
     _classCallCheck(this, FormOne);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(FormOne).call(this, props));
-    _this.state = {
-      name: '',
-      email: '',
-      password: ''
-    };
     _this.handleBackButtonClick = _this.handleBackButtonClick.bind(_assertThisInitialized(_this));
     _this.handleFormSubmit = _this.handleFormSubmit.bind(_assertThisInitialized(_this));
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
@@ -52,18 +47,13 @@ function (_React$Component) {
   }, {
     key: "handleFormSubmit",
     value: function handleFormSubmit(e) {
-      event.preventDefault();
-
-      for (var item in this.state) {
-        console.log(item + ': ' + this.state[item]);
-      }
-
+      this.props.handleSubmitData();
       this.props.travelBetweenPages('formOne', 'formTwo');
     }
   }, {
     key: "handleChange",
     value: function handleChange(e) {
-      this.setState(_defineProperty({}, e.target.name, e.target.value));
+      this.props.updateFormData(e);
     }
   }, {
     key: "render",
@@ -310,19 +300,26 @@ function (_React$Component6) {
 
     _this6 = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
     _this6.state = {};
-    _this6.handleFormSubmit = _this6.handleFormSubmit.bind(_assertThisInitialized(_this6));
+    _this6.handleSubmitData = _this6.handleSubmitData.bind(_assertThisInitialized(_this6));
     _this6.handleChange = _this6.handleChange.bind(_assertThisInitialized(_this6));
     return _this6;
   }
 
   _createClass(App, [{
-    key: "handleFormSubmit",
-    value: function handleFormSubmit(e) {
+    key: "handleSubmitData",
+    value: function handleSubmitData() {
       event.preventDefault();
 
       for (var item in this.state) {
         console.log(item + ': ' + this.state[item]);
       }
+
+      this.setState({});
+    }
+  }, {
+    key: "updateFormData",
+    value: function updateFormData(e) {
+      this.setState(_defineProperty({}, e.target.name, e.target.value));
     }
   }, {
     key: "travelBetweenPages",
@@ -331,17 +328,14 @@ function (_React$Component6) {
       document.getElementById(target).hidden = false;
     }
   }, {
-    key: "handleChange",
-    value: function handleChange(e) {
-      this.setState(_defineProperty({}, e.target.name, e.target.value));
-    }
-  }, {
     key: "render",
     value: function render() {
       return React.createElement("div", null, React.createElement(CheckoutButton, {
         travelBetweenPages: this.travelBetweenPages
       }), React.createElement(FormOne, {
-        travelBetweenPages: this.travelBetweenPages
+        travelBetweenPages: this.travelBetweenPages,
+        updateFormData: this.updateFormData,
+        handleSubmitData: this.handleSubmitData
       }), React.createElement(FormTwo, {
         travelBetweenPages: this.travelBetweenPages
       }), React.createElement(FormThree, {
