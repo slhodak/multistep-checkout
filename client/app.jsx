@@ -11,6 +11,9 @@ class FormOne extends React.Component {
     ReactDOM.findDOMNode(this).hidden = true;
     document.getElementById('checkoutButton').hidden = false;
   }
+  handleFormSubmit(e) {
+    event.preventDefault();
+  }
   render() {
     return(
     <div id="formOne" hidden={true}>
@@ -21,7 +24,7 @@ class FormOne extends React.Component {
         <input type="text" name="email" />
         <label for="password">Password:</label>
         <input type="text" name="password" />
-        <input type="submit" value="Next"/>
+        <input type="submit" value="Next" onClick={this.handleFormSubmit} />
       </form>
       <button onClick={this.handleBackButtonClick}>Back</button>
     </div>

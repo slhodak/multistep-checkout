@@ -43,6 +43,11 @@ function (_React$Component) {
       document.getElementById('checkoutButton').hidden = false;
     }
   }, {
+    key: "handleFormSubmit",
+    value: function handleFormSubmit(e) {
+      event.preventDefault();
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement("div", {
@@ -65,7 +70,8 @@ function (_React$Component) {
         name: "password"
       }), React.createElement("input", {
         type: "submit",
-        value: "Next"
+        value: "Next",
+        onClick: this.handleFormSubmit
       })), React.createElement("button", {
         onClick: this.handleBackButtonClick
       }, "Back"));
