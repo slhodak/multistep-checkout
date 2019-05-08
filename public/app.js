@@ -20,8 +20,22 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-//  Forms
+// Controllers
+//  Submit data to server
+//  AJAX? Fetch?
+var submitFormData = function submitFormData(data) {
+  fetch('http://127.0.0.1:9000', {
+    method: 'POST',
+    data: 'someData'
+  }).then(function (response) {
+    console.log(response);
+  })["catch"](function (err) {
+    console.log(err);
+  });
+}; //  Forms (Views...)
 // F1 collects name, email, and password for account creation.
+
+
 var FormOne =
 /*#__PURE__*/
 function (_React$Component) {

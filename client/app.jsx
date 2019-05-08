@@ -1,5 +1,19 @@
-
-//  Forms
+// Controllers
+//  Submit data to server
+//  AJAX? Fetch?
+const submitFormData = (data) => {
+  fetch('http://127.0.0.1:9000', {
+    method: 'POST',
+    data: 'someData'
+  })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+//  Forms (Views...)
 // F1 collects name, email, and password for account creation.
 class FormOne extends React.Component {
   constructor(props) {
