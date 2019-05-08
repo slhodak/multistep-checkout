@@ -1,5 +1,3 @@
-//  Controllers
-//  Submit data to server
 //  Data Submission
 //  (Controllers)
 const devServer = 'http://127.0.0.1:9000'

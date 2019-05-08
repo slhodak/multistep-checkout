@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 
+const db = require('./db.js');
+
 const app = express();
 
 app.listen(process.env.PORT || 9000);
@@ -11,9 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
 app.use(express.static(path.join(__dirname, path.normalize('../public'))));
 
-//  handle post requests
 app.post('/submitData', (req, res, next) => {
-  //  request body comes in parsed
   for (var item in req.body) {
     console.log(item + ': ' + req.body[item]);
   }
@@ -21,9 +21,8 @@ app.post('/submitData', (req, res, next) => {
   res.send('hear you');
 });
 
-// const Models = {
-//   parseAndSeparateData: (data) => {
+const Controllers = {
+  insert: (data) => {
     
-//     return JSON.parse(data);
-//   }
-// }
+  }
+}
