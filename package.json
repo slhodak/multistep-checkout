@@ -2,9 +2,10 @@
   "name": "multistep-checkout",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./server/server.js",
+    "build": "babel ./server/app.jsx -d ./public"
   },
   "repository": {
     "type": "git",
@@ -17,10 +18,15 @@
   },
   "homepage": "https://github.com/slhodak/multistep-checkout#readme",
   "dependencies": {
-    "babel": "^6.23.0",
-    "babel-cli": "^6.26.0",
     "express": "^4.16.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/standalone": "^7.4.4"
   }
 }

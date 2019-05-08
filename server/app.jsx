@@ -9,4 +9,4 @@ class CheckoutButton extends React.Component {
   }
 }
 
-
+ReactDOM.render(<CheckoutButton />, document.getElementById('root'));
