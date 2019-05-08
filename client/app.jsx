@@ -14,16 +14,14 @@ class FormOne extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   handleBackButtonClick(e) {
-    ReactDOM.findDOMNode(this).hidden = true;
-    document.getElementById('checkoutButton').hidden = false;
+    this.props.travelBetweenPages('formOne', 'checkoutButton');
   }
   handleFormSubmit(e) {
     event.preventDefault();
     for (var item in this.state) {
       console.log(item + ': ' + this.state[item]);
     }
-    ReactDOM.findDOMNode(this).hidden = true;
-    document.getElementById('formTwo').hidden = false;
+    this.props.travelBetweenPages('formOne', 'formTwo');
   }
   handleChange(e) {
     this.setState({
@@ -56,13 +54,11 @@ class FormTwo extends React.Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
   handleBackButtonClick(e) {
-    ReactDOM.findDOMNode(this).hidden = true;
-    document.getElementById('formOne').hidden = false;
+    this.props.travelBetweenPages('formTwo', 'formOne');
   }
   handleFormSubmit(e) {
     event.preventDefault();
-    ReactDOM.findDOMNode(this).hidden = true;
-    document.getElementById('formThree').hidden = false;
+    this.props.travelBetweenPages('formTwo', 'formThree');
   }
   render() {
     return(
@@ -90,13 +86,11 @@ class FormThree extends React.Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
   handleBackButtonClick(e) {
-    ReactDOM.findDOMNode(this).hidden = true;
-    document.getElementById('formTwo').hidden = false;
+    this.props.travelBetweenPages('formThree', 'formTwo');
   }
   handleFormSubmit(e) {
     event.preventDefault();
-    ReactDOM.findDOMNode(this).hidden = true;
-    document.getElementById('purchaseScreen').hidden = false;
+    this.props.travelBetweenPages('formThree', 'purchaseScreen');
   }
   render() {
     return(
@@ -122,8 +116,7 @@ class PurchaseScreen extends React.Component {
     this.handleShopMoreClick = this.handleShopMoreClick.bind(this);
   }
   handleShopMoreClick(e) {
-    ReactDOM.findDOMNode(this).hidden = true;
-    document.getElementById('checkoutButton').hidden = false;
+    this.props.travelBetweenPages('purchaseScreen', 'checkoutButton');
   }
   render() {
     return(
@@ -181,10 +174,10 @@ class App extends React.Component {
     return(
       <div>
         <CheckoutButton travelBetweenPages={this.travelBetweenPages}/>
-        <FormOne />
-        <FormTwo />
-        <FormThree />
-        <PurchaseScreen />
+        <FormOne travelBetweenPages={this.travelBetweenPages}/>
+        <FormTwo travelBetweenPages={this.travelBetweenPages}/>
+        <FormThree travelBetweenPages={this.travelBetweenPages}/>
+        <PurchaseScreen travelBetweenPages={this.travelBetweenPages}/>
       </div>
     )
   }

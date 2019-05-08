@@ -47,8 +47,7 @@ function (_React$Component) {
   _createClass(FormOne, [{
     key: "handleBackButtonClick",
     value: function handleBackButtonClick(e) {
-      ReactDOM.findDOMNode(this).hidden = true;
-      document.getElementById('checkoutButton').hidden = false;
+      this.props.travelBetweenPages('formOne', 'checkoutButton');
     }
   }, {
     key: "handleFormSubmit",
@@ -59,8 +58,7 @@ function (_React$Component) {
         console.log(item + ': ' + this.state[item]);
       }
 
-      ReactDOM.findDOMNode(this).hidden = true;
-      document.getElementById('formTwo').hidden = false;
+      this.props.travelBetweenPages('formOne', 'formTwo');
     }
   }, {
     key: "handleChange",
@@ -125,15 +123,13 @@ function (_React$Component2) {
   _createClass(FormTwo, [{
     key: "handleBackButtonClick",
     value: function handleBackButtonClick(e) {
-      ReactDOM.findDOMNode(this).hidden = true;
-      document.getElementById('formOne').hidden = false;
+      this.props.travelBetweenPages('formTwo', 'formOne');
     }
   }, {
     key: "handleFormSubmit",
     value: function handleFormSubmit(e) {
       event.preventDefault();
-      ReactDOM.findDOMNode(this).hidden = true;
-      document.getElementById('formThree').hidden = false;
+      this.props.travelBetweenPages('formTwo', 'formThree');
     }
   }, {
     key: "render",
@@ -189,15 +185,13 @@ function (_React$Component3) {
   _createClass(FormThree, [{
     key: "handleBackButtonClick",
     value: function handleBackButtonClick(e) {
-      ReactDOM.findDOMNode(this).hidden = true;
-      document.getElementById('formTwo').hidden = false;
+      this.props.travelBetweenPages('formThree', 'formTwo');
     }
   }, {
     key: "handleFormSubmit",
     value: function handleFormSubmit(e) {
       event.preventDefault();
-      ReactDOM.findDOMNode(this).hidden = true;
-      document.getElementById('purchaseScreen').hidden = false;
+      this.props.travelBetweenPages('formThree', 'purchaseScreen');
     }
   }, {
     key: "render",
@@ -251,8 +245,7 @@ function (_React$Component4) {
   _createClass(PurchaseScreen, [{
     key: "handleShopMoreClick",
     value: function handleShopMoreClick(e) {
-      ReactDOM.findDOMNode(this).hidden = true;
-      document.getElementById('checkoutButton').hidden = false;
+      this.props.travelBetweenPages('purchaseScreen', 'checkoutButton');
     }
   }, {
     key: "render",
@@ -347,7 +340,15 @@ function (_React$Component6) {
     value: function render() {
       return React.createElement("div", null, React.createElement(CheckoutButton, {
         travelBetweenPages: this.travelBetweenPages
-      }), React.createElement(FormOne, null), React.createElement(FormTwo, null), React.createElement(FormThree, null), React.createElement(PurchaseScreen, null));
+      }), React.createElement(FormOne, {
+        travelBetweenPages: this.travelBetweenPages
+      }), React.createElement(FormTwo, {
+        travelBetweenPages: this.travelBetweenPages
+      }), React.createElement(FormThree, {
+        travelBetweenPages: this.travelBetweenPages
+      }), React.createElement(PurchaseScreen, {
+        travelBetweenPages: this.travelBetweenPages
+      }));
     }
   }]);
 
