@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon ./server/server.js",
-    "build": "babel ./server/app.jsx -d ./public"
+    "test": "nodemon ./server/server.js",
+    "build": "babel -w ./client -d ./public"
   },
   "repository": {
     "type": "git",
