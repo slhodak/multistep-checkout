@@ -1,28 +1,39 @@
-const dbCredentials = require('../localdbCredentials.js');
+const { username, password} = require('../localdbCredentials.js');
 
 //  Database
 const Sequelize = require('sequelize');
 
-const db = {
-  name: 'carts',
-  username: dbCredentials.username,
-  password: dbCredentials.password
-};
-
-const sequelize = new Sequelize(db.name, db.username, db.password, {
+const sequelize = new Sequelize('carts', username, password, {
   host: 'localhost',
   dialect: 'mysql'
 });
 
-module.exports.Cart = sequelize.define('cart', {
+
+
+class Cart extends Sequelize.Model {};
+Cart.init({
   name: Sequelize.STRING,
   email: Sequelize.STRING,
-  password: Sequelize.STRING
+  password: Sequelize.STRING,
+  addressOne: Sequelize.STRING,
+  addressTwo: Sequelize.STRING,
+  city: Sequelize.STRING,
+  state: Sequelize.STRING,
+  zipCode: Sequelize.STRING,
+  phoneNumber: Sequelize.STRING,
+  ccNumber: Sequelize.STRING,
+  expirationDate: Sequelize.STRING,
+  cvvCode: Sequelize.STRING,
+  billingZipCode: Sequelize.STRING
+}, {
+  sequelize,
+  modelName: 'cart'
 });
 
-db.sync();
+sequelize.sync();
 
-module.exports.db = db;
+module.exports.Cart = Cart;
+module.exports.db = sequelize;
 
 // functions to insert
 
